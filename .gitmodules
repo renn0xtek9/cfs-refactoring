@@ -1,0 +1,4 @@
+[submodule "cFS"]
+	path = current_cfs_repo/cFS
+	url = https://github.com/nasa/cFS.git
+	branch = main
