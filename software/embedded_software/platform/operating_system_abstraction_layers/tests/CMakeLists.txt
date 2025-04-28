@@ -1,0 +1,6 @@
+enable_testing()
+ADD_SUBDIRECTORY (ut_assert)
+add_subdirectory(ut-stubs ut-stubs)
+include (add_osal_ut_exe)
+add_subdirectory(unit-test-coverage unit-test-coverage)
+add_subdirectory(unit-tests)

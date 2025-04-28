@@ -1,0 +1,5 @@
+*.orig
+.vscode/
+build
+build*/*
+output/*

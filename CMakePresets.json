@@ -1,0 +1,93 @@
+{
+    "version": 10,
+    "cmakeMinimumRequired": {
+        "major": 4,
+        "minor": 0,
+        "patch": 0
+    },
+    "configurePresets": [
+        {
+            "name": "x86-Debug",
+            "displayName": "x86 Default (Makefiles)",
+            "description": "x86 Debug build with Unix Makefiles",
+            "generator": "Unix Makefiles",
+            "binaryDir": "${sourceDir}/build/build-x86-Debug-make",
+            "graphviz": "${sourceDir}/build/build-x86-Debug-make/build-documentation/cmake.dot",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": {
+                    "type": "STRING",
+                    "value": "Debug"
+                },
+                "CMAKE_INSTALL_PREFIX": {
+                    "type": "PATH",
+                    "value": "/usr"
+                },
+                "CMAKE_EXPORT_COMPILE_COMMANDS": "ON",
+                "BUILD_TESTING": "ON",
+                "DESTDIR": "/tmp",
+                "OSAL_VALIDATE_API": "ON",
+                "OSAL_SYSTEM_BSPTYPE": "generic-linux",
+                "OSAL_INSTALL_LIBRARIES": "ON",
+                "OSAL_CONFIG_DEBUG_PRINTF": "ON",
+                "OSAL_USER_C_FLAGS": ""
+            },
+            "environment": {
+                "DESTDIR": "/tmp"
+            },
+            "installDir": "/tmp/my_project_staging/",
+            "vendor": {
+                "my_vendor_name": {
+                    "autoFormat": true
+                }
+            }
+        }
+    ],
+    "buildPresets": [
+        {
+            "name": "x86-Debug",
+            "configurePreset": "x86-Debug"
+        }
+    ],
+    "testPresets": [
+        {
+            "name": "x86-Debug-unit-tests",
+            "configurePreset": "x86-Debug",
+            "filter": {
+                "include": {
+                    "label": "unit_tests"
+                }
+            },
+            "output": {
+                "outputOnFailure": true,
+                "shortProgress": true
+            },
+            "execution": {
+                "noTestsAction": "error",
+                "stopOnFailure": true
+            }
+        },
+        {
+            "name": "x86-Debug-quality",
+            "configurePreset": "x86-Debug",
+            "filter": {
+                "include": {
+                    "label": "quality"
+                }
+            },
+            "output": {
+                "outputOnFailure": true,
+                "shortProgress": true
+            },
+            "execution": {
+                "noTestsAction": "error",
+                "stopOnFailure": true
+            }
+        }
+    ],
+    "workflowPresets": [],
+    "vendor": {
+        "my_vendor_name": {
+            "autoFormat": false
+        }
+    }
+}
