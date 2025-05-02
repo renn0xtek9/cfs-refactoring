@@ -1,1 +1,1 @@
-ADD_SUBDIRECTORY(interfaces_test_utilities)
+add_subdirectory (interfaces_test_utilities)

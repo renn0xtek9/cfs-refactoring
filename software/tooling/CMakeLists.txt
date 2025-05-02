@@ -1,2 +1,2 @@
-ADD_SUBDIRECTORY (libraries)
-ADD_SUBDIRECTORY (applications)
+add_subdirectory (libraries)
+add_subdirectory (applications)
