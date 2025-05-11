@@ -10,6 +10,8 @@ add_library (ut-adaptor-${SETNAME} STATIC src/ut-adaptor-module.c)
 # the "override_inc" dir contains replacement versions of the C-library include files.
 target_include_directories (ut-adaptor-${SETNAME} BEFORE PRIVATE ${OSALCOVERAGE_SOURCE_DIR}/ut-stubs/override_inc)
 
-target_include_directories (ut-adaptor-${SETNAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/inc)
+target_include_directories (
+  ut-adaptor-${SETNAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/inc
+                               $<TARGET_PROPERTY:osal_shared_impl,INTERFACE_INCLUDE_DIRECTORIES>)
 
-target_link_libraries (ut-adaptor-${SETNAME} PUBLIC ut_osapi_stub_headers osal_shared_impl)
+target_link_libraries (ut-adaptor-${SETNAME} PUBLIC ut_osapi_stub_headers)

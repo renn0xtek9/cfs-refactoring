@@ -2,6 +2,9 @@
   "name": "Ubuntu 22.04 Dev Container",
   "runArgs": [
     "--network=host",
+    "--cap-add=SYS_NICE",
+    "--ulimit=rtprio=99",
+    "--security-opt=seccomp=unconfined"
   ],
   "build": {
     "dockerfile": "Dockerfile",

@@ -12,7 +12,7 @@
             "description": "x86 Debug build with Unix Makefiles",
             "generator": "Unix Makefiles",
             "binaryDir": "${sourceDir}/build/",
-            "graphviz": "${sourceDir}/build/build-documentation/cmake.dot",
+            "graphviz": "${sourceDir}/build/cmake.dot",
             "cacheVariables": {
                 "CMAKE_BUILD_TYPE": {
                     "type": "STRING",
@@ -46,7 +46,7 @@
             "description": "x86 Debug build with Unix Makefiles",
             "generator": "Unix Makefiles",
             "binaryDir": "${sourceDir}/build/",
-            "graphviz": "${sourceDir}/build/build-documentation/cmake.dot",
+            "graphviz": "${sourceDir}/build/cmake.dot",
             "cacheVariables": {
                 "CMAKE_BUILD_TYPE": {
                     "type": "STRING",
