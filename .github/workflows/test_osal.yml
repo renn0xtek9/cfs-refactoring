@@ -1,0 +1,29 @@
+name: Operating System Abstraction Layer (OSAL) Tests
+
+on:
+  pull_request:
+    paths:
+      - '.devcontainer/**'
+      - 'cmake_modules/**'
+      - 'software/embedded_software/platform/operating_system_abstraction_layers/**'
+    types:
+      - opened
+      - synchronize
+
+jobs:
+  tests:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Install build dependencies
+        run: ./.devcontainer/install_build_dependencies.sh
+      - name: Configuring with preset
+        run: cmake --preset x86-Debug-generic-linux
+      - name: Build with preset
+        run: cmake --build --preset x86-Debug-generic-linux
+      - name: Runing tests 
+        run: ctest --test-dir build
+      - name: Insalling 
+        run: cmake --install build
+        timeout-minutes: 1
