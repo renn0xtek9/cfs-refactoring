@@ -4,12 +4,13 @@ on:
   pull_request:
     paths:
       - '.devcontainer/**'
+      - '.github/workflows/**'
       - 'cmake_modules/**'
       - 'software/embedded_software/platform/operating_system_abstraction_layers/**'
     types:
       - opened
       - synchronize
-
+    
 jobs:
   tests:
     runs-on: ubuntu-22.04
@@ -18,8 +19,10 @@ jobs:
         uses: actions/checkout@v2
       - name: Install build dependencies
         run: ./.devcontainer/install_build_dependencies.sh
+      - name: Add custom CMake to PATH
+        run: echo "/opt/cmake-4.0.1-linux-x86_64/bin" >> $GITHUB_PATH
       - name: Configuring with preset
-        run: cmake --preset x86-Debug-generic-linux
+        run: echo "$PATH" && cmake --preset x86-Debug-generic-linux
       - name: Build with preset
         run: cmake --build --preset x86-Debug-generic-linux
       - name: Runing tests 
