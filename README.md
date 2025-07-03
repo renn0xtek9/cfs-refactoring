@@ -1,9 +1,11 @@
 # Readme 
 This repository is a refactoring proposal of the NASA cFE.
-Currently it contains only [NASA's Operating System Abstraction Layer](https://github.com/nasa/osal).
+**Note**
+- Currently it contains only [NASA's Operating System Abstraction Layer](https://github.com/nasa/osal).
+- The existing CI (github actions) have not yet been integrated inside this repository.
 
 The refactoring encompass.
-- For a better integation with VSCode IDE: a [.devcontainer](.devcontainer/devcontainer.json) definition with relevant extensions (e.g. for CMake, Makefile, Github etc.). Use this feature by `Ctrl+Shift+P` then `Dev Containers: Reopen in container"
+- For a better integation with VSCode IDE: a [.devcontainer](.devcontainer/devcontainer.json) definition with relevant extensions (e.g. for CMake, Makefile, Github etc.). **Use this feature** by `Ctrl+Shift+P` then `Dev Containers: Reopen in container"
 - Usage of [CMakePresets.json](./CMakePresets.json) feature for better integration into IDE's like VSCode.
 - Restructuring the CMake and folder structure 
     - See [CMakeLists.txt](./software/embedded_software/platform/operating_system_abstraction_layers/CMakeLists.txt) the folder structure has been re-organized to contain one libary per folder to improve readability of the code base.
@@ -14,6 +16,9 @@ The refactoring encompass.
     - [add_osal_impl_library.cmake](./cmake_modules/add_osal_impl_library.cmake)
     - [add_osal_ut_exe.cmake](./cmake_modules/add_osal_ut_exe.cmake)
 - Using cmake format utility to format all cmake files. See [.cmake-format](./cmake-format)
+
+## Outlook
+- [ ] Integrate the rest of the Nasa CFE to make it mono-repo
 
 
 ## Developer's how to: 
@@ -35,3 +40,5 @@ cmake --build --preset x86-Debug-generic-linux -- -j 20
 ```bash 
 ctest --test-dir build
 ```
+
+- Format all files: `pre-commit run --all-files`
