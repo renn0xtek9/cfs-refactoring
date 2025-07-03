@@ -15,7 +15,7 @@ The refactoring encompass.
     - [add_coverage_testrunner.cmake](./cmake_modules/add_coverage_testrunner.cmake)
     - [add_osal_impl_library.cmake](./cmake_modules/add_osal_impl_library.cmake)
     - [add_osal_ut_exe.cmake](./cmake_modules/add_osal_ut_exe.cmake)
-- Using cmake format utility to format all cmake files. See [.cmake-format](./cmake-format)
+- Using cmake format utility to format all cmake files. See [.cmake-format](./.cmake-format)
 
 ## Outlook
 - [ ] Integrate the rest of the Nasa CFE to make it mono-repo
