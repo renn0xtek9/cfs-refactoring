@@ -16,8 +16,9 @@ function (add_coverage_testrunner TESTNAME FSW_SRCFILE TESTCASE_SRCFILE)
 
   target_compile_options (utobj_${TESTNAME} PRIVATE $<TARGET_PROPERTY:ut_coverage_compile,INTERFACE_COMPILE_OPTIONS>)
 
-  target_compile_definitions (utobj_${TESTNAME}
-                              PRIVATE $<TARGET_PROPERTY:ut_coverage_compile,INTERFACE_COMPILE_DEFINITIONS> OS_NETWORK_SUPPORTS_IPV6)
+  target_compile_definitions (
+    utobj_${TESTNAME} PRIVATE $<TARGET_PROPERTY:ut_coverage_compile,INTERFACE_COMPILE_DEFINITIONS>
+                              OS_NETWORK_SUPPORTS_IPV6)
 
   # the testcase is compiled with no special flags or override includes
   add_executable (${TESTNAME}-testrunner ${TESTCASE_SRCFILE} $<TARGET_OBJECTS:utobj_${TESTNAME}>)

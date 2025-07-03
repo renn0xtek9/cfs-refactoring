@@ -18,3 +18,4 @@ python3 -m pip install -r requirements.txt
 cd /tmp/
 wget https://github.com/Kitware/CMake/releases/download/v4.0.1/cmake-4.0.1-linux-x86_64.tar.gz
 sudo tar -xf cmake-4.0.1-linux-x86_64.tar.gz -C /opt/
+export PATH="/opt/cmake-4.0.1-linux-x86_64/bin/:$PATH"
