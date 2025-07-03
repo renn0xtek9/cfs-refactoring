@@ -17,16 +17,21 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-      - name: Install build dependencies
-        run: ./.devcontainer/install_build_dependencies.sh
-      - name: Add custom CMake to PATH
-        run: echo "/opt/cmake-4.0.1-linux-x86_64/bin" >> $GITHUB_PATH
-      - name: Configuring with preset
-        run: echo "$PATH" && cmake --preset x86-Debug-generic-linux
-      - name: Build with preset
-        run: cmake --build --preset x86-Debug-generic-linux
-      - name: Runing tests 
-        run: ctest --test-dir build
-      - name: Insalling 
-        run: cmake --install build
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+      - name: Build Docker image from devcontainer
+        run: |
+          cd .devcontainer && docker build -t devcontainer-image:latest -f Dockerfile .
+      - name: Configuring with preset x86-Debug-generic-linux
+        run: |
+          docker run --rm -v "$(pwd):/workspace" -w /workspace devcontainer-image:latest cmake --preset x86-Debug-generic-linux
+      - name: Building with preset x86-Debug-generic-linux
+        run: |
+          docker run --rm -v "$(pwd):/workspace" -w /workspace devcontainer-image:latest cmake --build --preset x86-Debug-generic-linux
+      - name: Testing with preset x86-Debug-generic-linux
+        run: |
+          docker run --rm --ulimit rtprio=99 -v "$(pwd):/workspace" -w /workspace devcontainer-image:latest ctest --test-dir build
+      - name: Installing with preset x86-Debug-generic-linux
+        run: |
+          docker run --rm -v "$(pwd):/workspace" -w /workspace devcontainer-image:latest cmake --install build
         timeout-minutes: 1
