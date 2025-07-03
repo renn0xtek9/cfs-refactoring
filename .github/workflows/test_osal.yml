@@ -1,4 +1,4 @@
-name: Operating System Abstraction Layer (OSAL) Tests
+name: Validation pipeline
 
 on:
   pull_request:
@@ -12,7 +12,21 @@ on:
       - synchronize
     
 jobs:
-  tests:
+  formatting:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+      - name: Install pre-commit
+        run: pip install pre-commit
+      - name: Run pre-commit hooks
+        run: pre-commit run --all-files
+
+  operating_system_abstraction_layer:
     runs-on: ubuntu-22.04
     steps:
       - name: Checkout code
